@@ -12,7 +12,7 @@
 	<groupId>com.corp.concepts</groupId>
 	<artifactId>auth</artifactId>
 	<version>1.0.0</version>
-	<name>tkauth</name>
+	<name>auth</name>
 	<description>Basic OAuth2 ResourceServer using SpringBoot</description>
 
 	<properties>
