@@ -1,0 +1,52 @@
+{"properties": [
+  {
+    "name": "custom.security.provider.realm.name",
+    "type": "java.lang.String",
+    "description": "A description for 'custom.security.provider.realm.name'"
+  },
+  {
+    "name": "custom.security.provider.jwt.resource-access.key",
+    "type": "java.lang.String",
+    "description": "A description for 'custom.security.provider.jwt.resource-access.key'"
+  },
+  {
+    "name": "custom.security.provider.jwt.resource.id",
+    "type": "java.lang.String",
+    "description": "A description for 'custom.security.provider.jwt.resource.id'"
+  },
+  {
+    "name": "custom.proxy.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'custom.proxy.enabled'"
+  },
+  {
+    "name": "custom.proxy.host",
+    "type": "java.lang.String",
+    "description": "A description for 'custom.proxy.host'"
+  },
+  {
+    "name": "custom.proxy.port",
+    "type": "java.lang.String",
+    "description": "A description for 'custom.proxy.port'"
+  },
+  {
+    "name": "custom.service.todos.url",
+    "type": "java.lang.String",
+    "description": "A description for 'custom.service.todos.url'"
+  },
+  {
+    "name": "custom.security.provider.jwt.role.key",
+    "type": "java.lang.String",
+    "description": "A description for 'custom.security.provider.jwt.role.key'"
+  },
+  {
+    "name": "custom.security.provider.jwt.claim.key",
+    "type": "java.lang.String",
+    "description": "A description for 'custom.security.provider.jwt.claim.key'"
+  },
+  {
+    "name": "custom.service.todos.url",
+    "type": "java.lang.String",
+    "description": "A description for 'custom.service.todos.url'"
+  }
+]}
