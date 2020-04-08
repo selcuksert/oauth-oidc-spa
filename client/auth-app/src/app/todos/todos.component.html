@@ -1,0 +1,132 @@
+<custom-style>
+    <style is="custom-style">
+        div[role="listbox"] {
+            border: 1px solid #e5e5e5;
+            width: auto;
+        }
+
+        .status {
+            display: inline-block;
+            box-sizing: border-box;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--paper-amber-500);
+        }
+
+        .red {
+            background-color: var(--paper-red-300);
+        }
+
+        .green {
+            background-color: var(--paper-green-300);
+        }
+
+        #msgDialog {
+            background-color: #c90119;
+            color: white;
+            margin: 0;
+            width: auto;
+        }
+
+        #todos {
+            height: 250px;
+            overflow-y: auto;
+        }
+
+        app-header-layout {
+            position: absolute;
+            top: 100px;
+            bottom: 100px;
+            right: 5px;
+            left: 5px;
+            height: calc(100% - 200px);
+            background-color: #eee;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        app-header {
+            background-color: #4285f4;
+            color: #fff;
+        }
+
+        paper-button.red {
+            background-color: #4285f4;
+            color: #c90119;
+        }
+
+        paper-button.indigo {
+            background-color: var(--paper-indigo-500);
+            color: white;
+        }
+
+        paper-dialog paper-button {
+            margin: auto;
+        }
+
+        paper-spinner.multi {
+            --paper-spinner-layer-1-color: var(--paper-purple-500);
+            --paper-spinner-layer-2-color: var(--paper-cyan-500);
+            --paper-spinner-layer-3-color: var(--paper-blue-grey-500);
+            --paper-spinner-layer-4-color: var(--paper-amber-500);
+            margin: auto;
+        }
+
+        paper-item.hide {
+            display: none;
+        }
+    </style>
+</custom-style>
+
+<app-header-layout has-scrolling-region>
+    <app-header slot="header" effects="waterfall" fixed>
+        <app-toolbar>
+            <paper-button (click)="getTodoList()">
+                <iron-icon icon="list"></iron-icon>All
+            </paper-button>
+
+            <paper-button (click)="openByIdDialog()">
+                <iron-icon icon="search"></iron-icon>By Id
+            </paper-button>
+
+            <paper-button (click)="logout()" class="red">
+                <iron-icon icon="exit-to-app"></iron-icon>Logout
+            </paper-button>
+        </app-toolbar>
+    </app-header>
+    <div id="todoListArea">
+        <paper-item>
+            <paper-item-body two-line>
+                <div>To Do List</div>
+                <div secondary>Green circle means task is completed, red circle means task is NOT completed.</div>
+            </paper-item-body>
+        </paper-item>
+        <paper-item [ngClass]="{'hide':!loading}">
+            <paper-spinner class="multi" [active]="loading"></paper-spinner>
+        </paper-item>
+        <paper-icon-item *ngFor="let todo of todoList">
+            <div slot="item-icon" [ngClass]="{'status': true, 'green':todo.completed, 'red': !todo.completed}">
+            </div>
+            <paper-item-body two-line>
+                <div>User: {{todo.userId}} | Task: {{todo.id}}</div>
+                <div secondary>{{todo.title}}</div>
+            </paper-item-body>
+        </paper-icon-item>
+    </div>
+</app-header-layout>
+
+<paper-dialog id="msgDialog" horizontal-align="center" vertical-align="top">
+    <h2>{{message}}</h2>
+</paper-dialog>
+
+<paper-dialog id="getByIdDialog" horizontal-align="center" vertical-align="top">
+    <div>
+        <paper-input [(ngModel)]="todoId" label="Enter task ID" auto-validate allowed-pattern="[0-9]" ngDefaultControl>
+        </paper-input>
+        <paper-button (click)="getTodoById()" class="indigo" raised
+            [disabled]="todoId === undefined || todoId.length === 0">
+            <iron-icon icon="search"></iron-icon>Get Task
+        </paper-button>
+    </div>
+</paper-dialog>
