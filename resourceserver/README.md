@@ -9,7 +9,7 @@ The `application.properties` file contains several parameters to integrate the r
 
 * *custom.security.provider<span></span>.realm.name:* Realm name defined in authorization server
 * *custom.security.provider.jwt.claim.key:* This resource server uses realm level roles instead of scopes to authorize API requests (see [`CustomJwtAuthenticationConverter`](src/main/java/com/corp/concepts/auth/config/jwt/CustomJwtAuthenticationConverter.java)). This parameter needs to be set with the top level JSON field name that JWT access token contains realm access data. For Keycloak this is `realm_access`:
-    ````json
+    ```json
     "realm_access": {
         "roles": [
             "todos_api.all",
@@ -17,7 +17,7 @@ The `application.properties` file contains several parameters to integrate the r
             "uma_authorization"
         ]
     }
-    ````
+    ```
 * *custom.security.provider.jwt.role.key:* This resource server uses realm level roles to authorize API request. This parameter needs to be set with the sub level JSON field name that JWT access token contains roles. For Keycloak this is `roles` (see above)
 * *custom.proxy.enabled:* Boolean to identify whether resource server is behind a proxy
 * *custom.proxy.host:* Proxy server host (valid when `custom.proxy.enabled: true`)

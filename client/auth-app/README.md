@@ -2,7 +2,7 @@
 
 Angular and [Polymer Elements](https://www.webcomponents.org/author/PolymerElements) based OAuth & OIDC SPA client
 
-This SPA relies on two different OpenID certified OAuth & OIDC client and can be used alternatively with setting the `authSvcVer` (default: V1) parameter with relevant `AuthSvcVer` enumarated version in `Constants` TS class:
+This SPA relies on two different OpenID certified OAuth & OIDC client and can be used alternatively with setting the `authSvcVer` (default: V1) parameter with relevant `AuthSvcVer` enumarated version in [`Constants`](src/app/core/constants.ts) TS class:
 ```javascript
 public static authSvcVer: AuthSvcVer = AuthSvcVer.V1; 
 ```
