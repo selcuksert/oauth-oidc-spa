@@ -1,6 +1,6 @@
 # SPA OAuth & OIDC client
 
-Angular and Polymer based OAuth & OIDC SPA client. 
+Angular and [Polymer Elements](https://www.webcomponents.org/author/PolymerElements) based OAuth & OIDC SPA client
 
 This SPA relies on two different OpenID certified OAuth & OIDC client and can be used alternatively with setting the `authSvcVer` (default: V1) parameter with relevant `AuthSvcVer` enumarated version in `Constants` TS class:
 ```javascript
@@ -16,8 +16,8 @@ There are two different authorization service implementations per aforementioned
 * *idmRoot:* Authorization server root URI
 * *authUrl:* Authorization endpoint URL based on Keycloak endpoint standards
 * *redirectV1Uri:* Redirect URI for authorization service V1 
-* *redirectV2Uri:* Redirect URI for authorization service V2. It requires a specific callback page
-* *signoutV2Uri:* Signout URI for authorization service V2. It requires a specific callback page
+* *redirectV2Uri:* Redirect URI for authorization service V2. It requires a specific callback page.
+* *signoutV2Uri:* Signout URI for authorization service V2. It requires a specific callback page.
 * *userInfoEpUri:* URI for user info endpoint based on Keycloak endpoint standards
 * *clientId:* Client ID configured in authorization server
 * *scope:* Requested access scope list. Needs to include `openid` to enable OpenID Connect. `profile email roles` are needed to retrieve realted user info and assigned roles to user.
