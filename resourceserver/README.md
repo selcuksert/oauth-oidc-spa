@@ -51,7 +51,7 @@ Unauthorized access (call to `/api/todos` -> client has no granted authority of 
 
 org.springframework.security.access.AccessDeniedException: Access is denied
 ```
-Authorized access (call to `/api/todo/{id}` client has granted authority of `ROLE_todos_api.byid`):
+Authorized access (call to `/api/todo/{id}` -> client has granted authority of `ROLE_todos_api.byid`):
 ```
 2020-04-12 21:44:16.625 DEBUG 16372 --- [nio-8081-exec-5] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/api/todo/12'; against '/api/todo/**'
 2020-04-12 21:44:16.626 DEBUG 16372 --- [nio-8081-exec-5] o.s.s.w.a.i.FilterSecurityInterceptor    : Secure object: FilterInvocation: URL: /api/todo/12; Attributes: [hasAnyRole('ROLE_todos_api.byid','ROLE_todos_api.all')]
