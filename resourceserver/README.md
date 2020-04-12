@@ -25,6 +25,22 @@ The `application.properties` file contains several parameters to integrate the r
 * *custom.service.todos.url:* Resource URL (for this one JSONPlaceholder /todos API)
 * *spring.security.oauth2.resourceserver.jwt.jwk-set-uri:* URI of token verification endpoint exposed by authorization server. Resource Server verifies the Token’s signature to ensure the JWT was not tampered. This endpoint provides the public key that the server needs for validation.
 
+## Authorization Mechanism
+
+After resource server validates token the request is validated whether it is authorized based on filter chain configuration in [`ResourceServerConfig`](src/main/java/com/corp/concepts/auth/config/ResourceServerConfig.java):
+
+```java
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		http.cors().and().authorizeRequests()
+				.antMatchers("/api/todo/**").hasAnyRole("todos_api.byid", "todos_api.all")
+				.antMatchers("/api/todos").hasRole("todos_api.all")
+				.anyRequest().denyAll().and()
+				.oauth2ResourceServer().jwt()
+				.jwtAuthenticationConverter(jwtConverter);
+	}
+```
+
 ## Additional References
 
 ### Reference Documentation
