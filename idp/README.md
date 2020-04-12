@@ -27,6 +27,11 @@ To interact with IdP a client must be configured in Keycloak using Clients menu 
 
 ![addclient2](../doc/images/add_client_2.jpg)
 
-![addclient3](../doc/images/add_client_3.jpg)
+After saving, we can see all the configuration options of the client:
+* `Valid Redirect URIs` should contain the address of SPA client.
+* Make sure the Standard Flow is enabled and other flows are disabled to enable Authorization Code Flow. 
+* `Access Type` should be `public` as SPAs are public clients.
+* `Web Origins` should contain SPA root and resource server API endpoint root.
 
+![addclient3](../doc/images/add_client_3.jpg)
 
