@@ -56,7 +56,7 @@ Use `Users` menu in left hand side and click `Add user` to add users:
 
 ## Assign Role
 
-Assign role to user defined at previous sections:
+Assign relevant realm role to user defined at previous sections with selecting available role and clicking `Add selected`:
 
 Before:
 ![assignrole1](../doc/images/assign_role_1.jpg)
