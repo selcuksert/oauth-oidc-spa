@@ -2,11 +2,17 @@
 This repository hosts a sample project on [OAuth & OIDC Authorization Code Flow with PKCE](https://tools.ietf.org/html/rfc7636) that comprises of an Angular &amp; Polymer based SPA (Single Page App) [client](/client/auth-app), Spring Boot based [resource server](/resourceserver) and an Keycloak [authorization server](/idp).
 
 ## Authorization Code Flow & PKCE
-The project relies on [OAuth & OIDC Authorization Code Flow with PKCE](https://tools.ietf.org/html/rfc7636) that is the [recommended method](https://developer.okta.com/blog/2019/08/22/okta-authjs-pkce) to use for SPA clients.
+The project relies on [OAuth & OIDC Authorization Code Flow with PKCE](https://tools.ietf.org/html/rfc7636) that is the [recommended method](https://developer.okta.com/blog/2019/08/22/okta-authjs-pkce) to use for SPA clients instead of implicit flow:
 
 ![PKCE](/doc/images/OAuth2-OIDC.jpg)
 
+The libraries/solutions in place are in [Certified OpenID Connect Implementations](https://openid.net/developers/certified/) list:
 
+* **Client:** Two alternatives are available for use:
+  * [angular-auth-oidc-client](https://github.com/damienbod/angular-auth-oidc-client)   
+  * [oidc-client-js](https://github.com/IdentityModel/oidc-client-js)
+* **Authorization Server:** [Keycloak](https://www.keycloak.org/)
+* **Resource Server:** spring-security-oauth2-boot based [resource server](https://docs.spring.io/spring-security-oauth2-boot/docs/current/reference/htmlsingle/#boot-features-security-oauth2-resource-server) that provides a ToDo list as a resource using an external [test API](http://jsonplaceholder.typicode.com/todos) of JSONPlaceholder
 
 
 
