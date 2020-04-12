@@ -3,4 +3,5 @@ export class User {
     title: String;
     email: String;
     username: String;
+    role: String;
 }

@@ -12,7 +12,7 @@ import { AuthSvcVer } from '../core/models/auth-svc-ver.enum';
 })
 export class LoginComponent implements OnInit {
 
-  title = 'Application Access Page';
+  title = 'System Access Gate';
   private authService: Auth;
 
   constructor(private injector: Injector) {

@@ -26,7 +26,7 @@ export class AppComponent {
 
     this.authService.userSource$.subscribe((user: User) => {
       if (user) {
-        this.userInfo = `${user.name} | ${user.title}`
+        this.userInfo = `${user.name} | ${user.role}`
       }
     })
   }

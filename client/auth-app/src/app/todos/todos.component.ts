@@ -102,6 +102,7 @@ export class TodosComponent implements OnInit {
       this.message = error.customMessage;
       this.dialog.open();
 
+      // Session expired. Drive client to logout flow.
       if (401 === error.httpError.status) {
         this.logout();
       }
