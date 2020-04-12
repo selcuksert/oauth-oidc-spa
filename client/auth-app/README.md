@@ -1,13 +1,29 @@
 # SPA OAuth & OIDC client
 
-This SPA relies on two different OpenID certified OAuth & OIDC client and can be used alternatively with setting the [`authSvcVer`](https://github.com/selcuksert/oauth-oidc-spa/blob/272d0ff33231812662a17888cfa0b02729267f78/client/auth-app/src/app/core/constants.ts#L5) (default: V1) parameter with relevant version in Constants TS class:
-
+This SPA relies on two different OpenID certified OAuth & OIDC client and can be used alternatively with setting the `authSvcVer`(default: V1) parameter with relevant `AuthSvcVer` enumarated version in [`Constants`](/app/core/constants.ts) TS class:
+```javascript
+public static authSvcVer: AuthSvcVer = AuthSvcVer.V1; 
+```
 * V1: [angular-oauth2-oidc](https://github.com/manfredsteyer/angular-oauth2-oidc)  
-* V2: [oidc-client-js](https://github.com/IdentityModel/oidc-client-js) 
+* V2: [oidc-client-js](https://github.com/IdentityModel/oidc-client-js)
 
-# Instructions
+There are two different authorization service implementations per aforementioned client libraries and each are configured using Constants TS class:
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.6.
+* *realmName:* Realm name defined in authorization server
+* *webRoot:* Client root URI
+* *idmRoot:* Authorization server root URI
+* *authUrl:* Authorization endpoint URL based on Keycloak endpoint standards
+* *redirectV1Uri:* Redirect URI for authorization service V1 
+* *redirectV2Uri:* Redirect URI for authorization service V2. It requires a specific callback page
+* *signoutV2Uri:* Signout URI for authorization service V2. It requires a specific callback page
+* *userInfoEpUri:* URI for user info endpoint based on Keycloak endpoint standards
+* *clientId:* Client ID configured in authorization server
+* *scope:* Requested access scope list. Needs to include `openid` to enable OpenID Connect. `profile email roles` are needed to retrieve realted user info and assigned roles to user
+* *responseType:* Response type. Needs to be set as `code` to enable PKCE with AuthZ code flow 
+
+# Angular Related Instructions
+
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli).
 
 ## Development server
 
