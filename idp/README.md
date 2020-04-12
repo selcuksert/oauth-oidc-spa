@@ -15,7 +15,6 @@ After starting Keycloak server you can launch to `<server.host>/auth/admin` and 
 To create a new realm use the drop-down menu next to the realm name in the upper-left corner:
 
 ![addrealm](../doc/images/add_realm.jpg)
-![addrealm-next](../doc/images/add_realm_next.jpg)
 
 For this project corpauth is the custom realm:
 ![corpauth](../doc/images/realm_def.jpg)
