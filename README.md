@@ -16,6 +16,6 @@ The libraries/solutions in place are in [Certified OpenID Connect Implementation
 
 The basic project architecture is as follows (in Archimate standard):
 
-![Architecture](/docs/images/arch.jpg)
+![Architecture](/doc/images/arch.jpg)
 
 
