@@ -14,4 +14,4 @@ After starting Keycloak server you can launch to `<server.host>/auth/admin` and 
 
 Create a new realm by clicking on the drop-down arrow next to the realm name in the upper left corner.
 
-![addrealm](../doc/images/add_realm.JPG)
+![addrealm](../doc/images/add_realm.jpg)
