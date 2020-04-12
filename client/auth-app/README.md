@@ -1,4 +1,11 @@
-# AuthApp
+# SPA OAuth & OIDC client
+
+This SPA relies on two different OpenID certified OAuth & OIDC client and can be used alternatively with setting the [`authSvcVer`](/blob/272d0ff33231812662a17888cfa0b02729267f78/client/auth-app/src/app/core/constants.ts#L5) (default: V1) parameter with relevant version in Constants TS class:
+
+* V1: [angular-oauth2-oidc](https://github.com/manfredsteyer/angular-oauth2-oidc)  
+* V2: [oidc-client-js](https://github.com/IdentityModel/oidc-client-js) 
+
+# Instructions
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.6.
 
