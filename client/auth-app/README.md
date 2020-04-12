@@ -1,6 +1,8 @@
 # SPA OAuth & OIDC client
 
-This SPA relies on two different OpenID certified OAuth & OIDC client and can be used alternatively with setting the `authSvcVer`(default: V1) parameter with relevant `AuthSvcVer` enumarated version in [`Constants`](/app/core/constants.ts) TS class:
+Angular and Polymer based OAuth & OIDC SPA client. 
+
+This SPA relies on two different OpenID certified OAuth & OIDC client and can be used alternatively with setting the `authSvcVer` (default: V1) parameter with relevant `AuthSvcVer` enumarated version in `Constants` TS class:
 ```javascript
 public static authSvcVer: AuthSvcVer = AuthSvcVer.V1; 
 ```
@@ -18,8 +20,11 @@ There are two different authorization service implementations per aforementioned
 * *signoutV2Uri:* Signout URI for authorization service V2. It requires a specific callback page
 * *userInfoEpUri:* URI for user info endpoint based on Keycloak endpoint standards
 * *clientId:* Client ID configured in authorization server
-* *scope:* Requested access scope list. Needs to include `openid` to enable OpenID Connect. `profile email roles` are needed to retrieve realted user info and assigned roles to user
-* *responseType:* Response type. Needs to be set as `code` to enable PKCE with AuthZ code flow 
+* *scope:* Requested access scope list. Needs to include `openid` to enable OpenID Connect. `profile email roles` are needed to retrieve realted user info and assigned roles to user.
+* *responseType:* Response type. Needs to be set as `code` to enable PKCE with AuthZ code flow. 
+
+# Sample Screenshots
+![screenshots](/doc/images/ss.jpg)
 
 # Angular Related Instructions
 
