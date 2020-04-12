@@ -27,7 +27,7 @@ The `application.properties` file contains several parameters to integrate the r
 
 ## Authorization Mechanism
 
-After resource server validates token the request is validated whether it is authorized based on filter chain configuration in [`ResourceServerConfig`](src/main/java/com/corp/concepts/auth/config/ResourceServerConfig.java):
+After resource server validates token the request is validated whether it is authorized based on filter chain configuration in [`ResourceServerConfig`](src/main/java/com/corp/concepts/auth/config/ResourceServerConfig.java). The configuration simply checks whether invoked API endpoint's URL pattern's corresponding role setting (`hasRole()`, `hasAnyrole()`) match within role list in access JWT:
 
 ```java
 	@Override
@@ -41,6 +41,31 @@ After resource server validates token the request is validated whether it is aut
 	}
 ```
 
+Unauthorized access:
+```
+2020-04-12 21:39:30.826 DEBUG 16372 --- [nio-8081-exec-1] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/api/todos'; against '/api/todos'
+2020-04-12 21:39:30.829 DEBUG 16372 --- [nio-8081-exec-1] o.s.s.w.a.i.FilterSecurityInterceptor    : Secure object: FilterInvocation: URL: /api/todos; Attributes: [hasRole('ROLE_todos_api.all')]
+2020-04-12 21:39:30.830 DEBUG 16372 --- [nio-8081-exec-1] o.s.s.w.a.i.FilterSecurityInterceptor    : Previously Authenticated: org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken@fe58526d: Principal: org.springframework.security.oauth2.jwt.Jwt@b0a0569f; Credentials: [PROTECTED]; Authenticated: true; Details: org.springframework.security.web.authentication.WebAuthenticationDetails@b364: RemoteIpAddress: 0:0:0:0:0:0:0:1; SessionId: null; Granted Authorities: ROLE_offline_access, ROLE_todos_api.byid, SCOPE_openid, SCOPE_email, ROLE_uma_authorization, SCOPE_profile
+2020-04-12 21:39:30.841 DEBUG 16372 --- [nio-8081-exec-1] o.s.s.access.vote.AffirmativeBased       : Voter: org.springframework.security.web.access.expression.WebExpressionVoter@541a6ecb, returned: -1
+2020-04-12 21:39:30.851 DEBUG 16372 --- [nio-8081-exec-1] o.s.s.w.a.ExceptionTranslationFilter     : Access is denied (user is not anonymous); delegating to AccessDeniedHandler
+
+org.springframework.security.access.AccessDeniedException: Access is denied
+```
+Authorized access:
+```
+2020-04-12 21:44:16.625 DEBUG 16372 --- [nio-8081-exec-5] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/api/todo/12'; against '/api/todo/**'
+2020-04-12 21:44:16.626 DEBUG 16372 --- [nio-8081-exec-5] o.s.s.w.a.i.FilterSecurityInterceptor    : Secure object: FilterInvocation: URL: /api/todo/12; Attributes: [hasAnyRole('ROLE_todos_api.byid','ROLE_todos_api.all')]
+2020-04-12 21:44:16.626 DEBUG 16372 --- [nio-8081-exec-5] o.s.s.w.a.i.FilterSecurityInterceptor    : Previously Authenticated: org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken@fe58526d: Principal: org.springframework.security.oauth2.jwt.Jwt@dc526178; Credentials: [PROTECTED]; Authenticated: true; Details: org.springframework.security.web.authentication.WebAuthenticationDetails@b364: RemoteIpAddress: 0:0:0:0:0:0:0:1; SessionId: null; Granted Authorities: ROLE_offline_access, ROLE_todos_api.byid, SCOPE_openid, SCOPE_email, ROLE_uma_authorization, SCOPE_profile
+2020-04-12 21:44:16.628 DEBUG 16372 --- [nio-8081-exec-5] o.s.s.access.vote.AffirmativeBased       : Voter: org.springframework.security.web.access.expression.WebExpressionVoter@541a6ecb, returned: 1
+2020-04-12 21:44:16.628 DEBUG 16372 --- [nio-8081-exec-5] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorization successful
+2020-04-12 21:44:16.628 DEBUG 16372 --- [nio-8081-exec-5] o.s.s.w.a.i.FilterSecurityInterceptor    : RunAsManager did not change Authentication object
+2020-04-12 21:44:16.629 DEBUG 16372 --- [nio-8081-exec-5] o.s.security.web.FilterChainProxy        : /api/todo/12 reached end of additional filter chain; proceeding with original chain
+2020-04-12 21:44:16.638 DEBUG 16372 --- [nio-8081-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/api/todo/12", parameters={}
+2020-04-12 21:44:16.639 DEBUG 16372 --- [nio-8081-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.corp.concepts.oauthrserver.controller.TodosController#todo(int)
+2020-04-12 21:44:16.676 DEBUG 16372 --- [nio-8081-exec-5] o.s.web.client.RestTemplate              : HTTP GET http://jsonplaceholder.typicode.com/todos/12
+2020-04-12 21:44:16.757 DEBUG 16372 --- [nio-8081-exec-5] o.s.web.client.RestTemplate              : Accept=[application/json, application/*+json]
+2020-04-12 21:44:16.894 DEBUG 16372 --- [nio-8081-exec-5] o.s.web.client.RestTemplate              : Response 200 OK
+```
 ## Additional References
 
 ### Reference Documentation
