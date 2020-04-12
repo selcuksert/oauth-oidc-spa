@@ -8,7 +8,7 @@ docker run -d -e KEYCLOAK_USER=<ADMIN USERNAME> -e KEYCLOAK_PASSWORD=<ADMIN PASS
 ```
 or choose another relevant [method](https://www.keycloak.org/docs/latest/server_installation/index.html#installation) for you.
 
-## Create a new Realm
+## Creating a new Realm
 
 After starting Keycloak server you can launch to `<server.host>/auth/admin` and login to administration portal using admin username & password. Then you need to create a realm rather than top level "master" realm to manage users, credentials, roles, and groups.
 
@@ -18,4 +18,15 @@ To create a new realm use the drop-down menu next to the realm name in the upper
 
 For this project corpauth is the custom realm:
 ![corpauth](../doc/images/realm_def.jpg)
+
+## Creating client for SPA
+
+To interact with IdP a client must be configured in Keycloak using Clients menu in left hand side then creating a client with Client Protocol set as openid-connect:
+
+![addclient1](../doc/images/add_client_1.jpg)
+
+![addclient2](../doc/images/add_client_2.jpg)
+
+![addclient3](../doc/images/add_client_3.jpg)
+
 
