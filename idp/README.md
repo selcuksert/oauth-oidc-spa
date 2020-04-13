@@ -4,7 +4,7 @@ This project utilizes [Keycloak](https://www.keycloak.org/) as it is an [OpenID 
 If you have a Docker runtime installed, you can use following command to quickly start a Keycloak server:
 
 ```
-docker run -d -e KEYCLOAK_USER=<ADMIN USERNAME> -e KEYCLOAK_PASSWORD=<ADMIN PASSWORD> jboss/keycloak
+docker run -d -p 8080:8080 -e KEYCLOAK_USER=<ADMIN USERNAME> -e KEYCLOAK_PASSWORD=<ADMIN PASSWORD> jboss/keycloak
 ```
 or choose another relevant [method](https://www.keycloak.org/docs/latest/server_installation/index.html#installation) for you.
 
