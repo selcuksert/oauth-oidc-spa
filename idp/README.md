@@ -1,7 +1,7 @@
 # Keycloak as Authorization Server
 This project utilizes [Keycloak](https://www.keycloak.org/) as it is an [OpenID certified](https://openid.net/developers/certified/) identity provider.
 
-If you have a Docker runtime installed, you can use following command to quickly start a Keycloak server:
+If you have a Docker runtime installed, you can use following command to quickly start a Keycloak server with admin portal run on <span>h</span>ttp://localhost:8080/auth/admin:
 
 ```
 docker run -d -p 8080:8080 -e KEYCLOAK_USER=<ADMIN USERNAME> -e KEYCLOAK_PASSWORD=<ADMIN PASSWORD> jboss/keycloak
