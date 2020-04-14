@@ -21,8 +21,8 @@ public class ResourceServerConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors().and().authorizeRequests()
-				.antMatchers("/api/todo/**").hasAnyRole("todos_api.byid", "todos_api.all")
-				.antMatchers("/api/todos").hasRole("todos_api.all")
+				.antMatchers("/api/todo/**").hasAnyRole("development", "management")
+				.antMatchers("/api/todos").hasRole("management")
 				.anyRequest().denyAll().and()
 				.oauth2ResourceServer().jwt()
 				.jwtAuthenticationConverter(jwtConverter);

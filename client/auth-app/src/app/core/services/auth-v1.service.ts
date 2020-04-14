@@ -43,6 +43,7 @@ export class AuthV1Service implements Auth {
   public isLoggedIn(): Promise<Boolean> {
     if (this.oauthService.hasValidAccessToken()) {
       return this.oauthService.loadUserProfile().then(userinfo => {
+        console.log(userinfo);
         const loggedIn = !!userinfo;
         return loggedIn;
       });
@@ -54,17 +55,17 @@ export class AuthV1Service implements Auth {
 
   public getUserInfo() {
     if (!this.user) {
-      let userInfo = this.oauthService.getIdentityClaims();
-
-      if (userInfo) {
-        this.user = new User();
-        this.user.email = userInfo['email'];
-        this.user.name = userInfo['name'];
-        this.user.title = userInfo['title'];
-        this.user.username = userInfo['preferred_username'];
-        this.user.role = userInfo['role'];
-
-        this.userSource.next(this.user);
+      if (this.oauthService.hasValidAccessToken()) {
+        this.oauthService.loadUserProfile().then(userInfo => {
+          this.user = new User();
+          this.user.email = userInfo['email'];
+          this.user.name = userInfo['name'];
+          this.user.title = userInfo['title'];
+          this.user.username = userInfo['preferred_username'];
+          this.user.photo = userInfo['jpegPhoto'];
+  
+          this.userSource.next(this.user);
+          });
       }
     }
   }

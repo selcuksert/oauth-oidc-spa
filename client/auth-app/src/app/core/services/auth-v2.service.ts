@@ -46,7 +46,7 @@ export class AuthV2Service implements Auth {
       this.appUser.name = userInfo['name'];
       this.appUser.title = userInfo['title'];
       this.appUser.username = userInfo['preferred_username'];
-      this.appUser.role = userInfo['role'];
+      this.appUser.photo = userInfo['jpegPhoto'];
 
       this.userSource.next(this.appUser);
     }

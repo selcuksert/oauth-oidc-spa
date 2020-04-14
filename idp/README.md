@@ -1,13 +1,35 @@
 # Keycloak as Authorization Server
 This project utilizes [Keycloak](https://www.keycloak.org/) as it is an [OpenID certified](https://openid.net/developers/certified/) identity provider.
 
-If you have a Docker runtime installed, you can use following command to quickly start a Keycloak server with admin portal run on <span>h</span>ttp://localhost:8080/auth/admin:
+If you have a Docker runtime installed, you can use following docker-compose file to quickly start a Keycloak server with admin portal run on <span>h</span>ttp://localhost:8080/auth/admin and an [OpenLDAP](https://www.openldap.org/) based directory server: 
 
-```
-docker run -d -p 8080:8080 -e KEYCLOAK_USER=<ADMIN USERNAME> -e KEYCLOAK_PASSWORD=<ADMIN PASSWORD> jboss/keycloak
+```yml
+version: '3'
+services:
+  keycloak:
+    container_name: keycloak
+    image: jboss/keycloak
+    environment:
+      - KEYCLOAK_USER=<KEYCLOAK_ADMIN_USER>
+      - KEYCLOAK_PASSWORD=<KEYCLOAK_ADMIN_PASSWORD>
+    ports:
+      - "8080:8080"
+  openldap:
+    container_name: openldap
+    image: osixia/openldap:1.3.0
+    environment:
+      - LDAP_ORGANISATION=The Corporation
+      - LDAP_DOMAIN=corp.com
+      - LDAP_ADMIN_PASSWORD=<OPENLDAP_ADMIN_PASSWORD>
+    ports:
+      - "389:389"
 ```
 or choose another relevant [method](https://www.keycloak.org/docs/latest/server_installation/index.html#installation) for you.
 
+The project uses a sample [user database](./ldap/conf/ldap_data.ldif) that can be imported as follows:
+```bash
+docker exec -it openldap ldapadd -x -D "cn=admin,dc=corp,dc=com" -w <OPENLDAP_ADMIN_PASSWORD> -f /home/ldap_data.ldif -ZZ
+``` 
 ## Creating a new Realm
 
 After starting Keycloak server you can launch to `<server.host>/auth/admin` and login to administration portal using admin username & password. Then you need to create a realm rather than top level "master" realm to manage users, credentials, roles, and groups.
@@ -35,34 +57,30 @@ After saving, we can see all the configuration options of the client:
 
 ![addclient3](../doc/images/add_client_3.jpg)
 
-## Creating scope and roles
+## Directory Server Integration
 
-Roles and scopes are used to classify and control access to resources. Roles and scopes can be used by resource server to decide whether request to access a resource (API call) is authorized. For this project we only use realm level roles not scopes for authorization.
+This project uses an LDAP server as user base and integration can be done via `User Federation` menu of Keycloak in left hand side then using `Add Provider --> ldap`. A sample configuration is as follows:
 
-Use `Roles` menu in left hand side and click `Add Role` to add two roles:
-* todos_api.all: Authorized to list all ToDo tasks
-* todos_api.byid: Authorized to list ToDo tasks by ID
+![addldap1](../doc/images/add_ldap_1.jpg)
+![addldap2](../doc/images/add_ldap_2.jpg)
 
-![addroles](../doc/images/add_roles.jpg)
+The sample configuration enables Keycloak to use OpenLDAP server as user base with a designated synchronization policy defined under `Sync Settings`. In order to perform a force synchronization `Synchronize all users` button under that page should be used. As sample LDAP user entities contains title and photo attributes LDAP mappers with the type of `user-attribute-ldap-mapper` should be set in Keycloak. The `Mappers` tab under the same page:
 
-## Adding users
+![addldap3](../doc/images/add_ldap_3.jpg)
+![addldap4](../doc/images/add_ldap_4.jpg)
 
-Use `Users` menu in left hand side and click `Add user` to add users:
+These mappings should also done for client created in order to retrieve these user attributes via `/userinfo` endpoint. This can be done under `Mappers` tab using `Create` button on relevant client definition page:  
+![userinfo1](../doc/images/userinfo_1.jpg)
+![userinfo2](../doc/images/userinfo_2.jpg)
 
-![adduser](../doc/images/add_user.jpg)
+## Roles
 
-* Enable `User Enabled`.
-* After creation, set a password via Credentials tab. Disable `Temporary` setting to avoid password change prompt at first login.
+Roles and scopes are used to classify and control access to resources. Roles and scopes can be used by resource server to decide whether request to access a resource (API call) is authorized. For this project we only use LDAP based roles not scopes for authorization.
 
-## Assign Role
+In order to use LDAP as a base for role definitions a new LDAP mapper with the type of `role-ldap-mapper` should be added under defined User Federation setting of LDAP. A sample configuration applies to our pre-defined user database is as follows:
 
-Assign relevant realm role to user defined at previous sections with selecting available role and clicking `Add selected`:
+![addldaproles](../doc/images/add_ldap_roles.jpg)
 
-Before:
-![assignrole1](../doc/images/assign_role_1.jpg)
-
-After:
-![assignrole2](../doc/images/assign_role_2.jpg)
 
 
 

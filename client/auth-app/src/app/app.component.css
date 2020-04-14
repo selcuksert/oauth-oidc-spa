@@ -41,6 +41,15 @@ p {
   margin: 0 8px;
 }
 
+.avatar {
+  height: inherit;
+  border-radius: 50%;
+}
+
+.hide {
+  display: none;
+}
+
 .toolbar span {
   margin-right: 15px;
   font-size: 15px;

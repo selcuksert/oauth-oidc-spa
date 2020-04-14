@@ -80,7 +80,8 @@
   }
 
   .card.card.highlight-card span {
-    margin-left: 10px;
+    margin-left: 80px;
+    margin-right: 60px;
   }
 
   img#logo {

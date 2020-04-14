@@ -38,7 +38,7 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-            <optional>true</optional>
+			<optional>true</optional>
 		</dependency>
 
 		<dependency>
@@ -64,6 +64,24 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<project>
+						<developers>
+							<developer>
+								<name>Selcuk SERT</name>
+								<email>selcuk.sert@gmail.com</email>
+								<roles>
+									<role>
+										Developer
+									</role>
+									<role>
+										Enterprise Architect
+									</role>
+								</roles>
+							</developer>
+						</developers>
+					</project>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
