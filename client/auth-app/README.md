@@ -24,7 +24,7 @@ There are two different authorization service implementations per aforementioned
 * *responseType:* Response type. Needs to be set as `code` to enable PKCE with AuthZ code flow. 
 
 # Sample Screenshots
-![screenshots](/doc/images/ss.jpg)
+![screenshots](/doc/images/screenshots.jpg)
 
 # Angular Related Instructions
 
