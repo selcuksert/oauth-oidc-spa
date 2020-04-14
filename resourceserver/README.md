@@ -51,6 +51,7 @@ Unauthorized access (call to `/api/todos` -> client has no granted authority of 
 
 org.springframework.security.access.AccessDeniedException: Access is denied
 ```
+
 Authorized access (call to `/api/todos` -> client has granted authority of `management`):
 ```
 2020-04-14 17:11:40.146 DEBUG 8816 --- [nio-8081-exec-7] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/api/todos'; against '/api/todos'
@@ -58,6 +59,15 @@ Authorized access (call to `/api/todos` -> client has granted authority of `mana
 2020-04-14 17:11:40.149 DEBUG 8816 --- [nio-8081-exec-7] o.s.s.w.a.i.FilterSecurityInterceptor    : Previously Authenticated: org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken@20bf38c0: Principal: org.springframework.security.oauth2.jwt.Jwt@208aa897; Credentials: [PROTECTED]; Authenticated: true; Details: org.springframework.security.web.authentication.WebAuthenticationDetails@b364: RemoteIpAddress: 0:0:0:0:0:0:0:1; SessionId: null; Granted Authorities: ROLE_offline_access, SCOPE_openid, SCOPE_email, ROLE_uma_authorization, ROLE_management, SCOPE_profile
 2020-04-14 17:11:40.150 DEBUG 8816 --- [nio-8081-exec-7] o.s.s.access.vote.AffirmativeBased       : Voter: org.springframework.security.web.access.expression.WebExpressionVoter@3a20ed1, returned: 1
 2020-04-14 17:11:40.151 DEBUG 8816 --- [nio-8081-exec-7] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorization successful
+```
+
+Authorized access (call to `/api/todo/{id}` -> client has granted authority of `development`):
+```
+2020-04-14 17:11:27.256 DEBUG 8816 --- [nio-8081-exec-2] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/api/todo/123'; against '/api/todo/**'
+2020-04-14 17:11:27.257 DEBUG 8816 --- [nio-8081-exec-2] o.s.s.w.a.i.FilterSecurityInterceptor    : Secure object: FilterInvocation: URL: /api/todo/123; Attributes: [hasAnyRole('ROLE_development','ROLE_management')]
+2020-04-14 17:11:27.257 DEBUG 8816 --- [nio-8081-exec-2] o.s.s.w.a.i.FilterSecurityInterceptor    : Previously Authenticated: org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken@33b7c59e: Principal: org.springframework.security.oauth2.jwt.Jwt@c72579b5; Credentials: [PROTECTED]; Authenticated: true; Details: org.springframework.security.web.authentication.WebAuthenticationDetails@b364: RemoteIpAddress: 0:0:0:0:0:0:0:1; SessionId: null; Granted Authorities: ROLE_offline_access, SCOPE_openid, SCOPE_email, ROLE_uma_authorization, SCOPE_profile, ROLE_development
+2020-04-14 17:11:27.258 DEBUG 8816 --- [nio-8081-exec-2] o.s.s.access.vote.AffirmativeBased       : Voter: org.springframework.security.web.access.expression.WebExpressionVoter@3a20ed1, returned: 1
+2020-04-14 17:11:27.258 DEBUG 8816 --- [nio-8081-exec-2] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorization successful
 ```
 ## Additional References
 
