@@ -7,6 +7,7 @@ This SPA relies on two different OpenID certified OAuth & OIDC client and can be
 ```javascript
 public static authSvcVer: AuthSvcVer = AuthSvcVer.V1; 
 ```
+
 * V1: [angular-oauth2-oidc](https://github.com/manfredsteyer/angular-oauth2-oidc)  
 * V2: [oidc-client-js](https://github.com/IdentityModel/oidc-client-js)
 
