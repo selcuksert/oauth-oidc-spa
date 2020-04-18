@@ -28,7 +28,7 @@ or choose another relevant [method](https://www.keycloak.org/docs/latest/server_
 
 The project uses a sample [user database](./ldap/conf/ldap_data.ldif) that can be imported as follows:
 ```bash
-docker exec -it openldap ldapadd -x -D "cn=admin,dc=corp,dc=com" -w <OPENLDAP_ADMIN_PASSWORD> -f /home/ldap_data.ldif -ZZ
+docker exec -it openldap ldapadd -x -D "cn=admin,dc=corp,dc=com" -w <OPENLDAP_ADMIN_PASSWORD> -f ldap_data.ldif -ZZ
 ``` 
 ![ldapview](../doc/images/ldap.jpg)
 ## Creating a new Realm
