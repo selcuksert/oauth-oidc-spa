@@ -30,6 +30,7 @@ The project uses a sample [user database](./ldap/conf/ldap_data.ldif) that can b
 ```bash
 docker exec -it openldap ldapadd -x -D "cn=admin,dc=corp,dc=com" -w <OPENLDAP_ADMIN_PASSWORD> -f ldap_data.ldif -ZZ
 ``` 
+LDAP view:
 ![ldapview](../doc/images/ldap.jpg)
 ## Creating a new Realm
 
