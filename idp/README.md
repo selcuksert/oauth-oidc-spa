@@ -30,6 +30,7 @@ The project uses a sample [user database](./ldap/conf/ldap_data.ldif) that can b
 ```bash
 docker exec -it openldap ldapadd -x -D "cn=admin,dc=corp,dc=com" -w <OPENLDAP_ADMIN_PASSWORD> -f /home/ldap_data.ldif -ZZ
 ``` 
+![ldaview](../doc/images/ldap.jpg)
 ## Creating a new Realm
 
 After starting Keycloak server you can launch to `<server.host>/auth/admin` and login to administration portal using admin username & password. Then you need to create a realm rather than top level "master" realm to manage users, credentials, roles, and groups.
